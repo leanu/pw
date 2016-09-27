@@ -56,18 +56,21 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_DESTROY:
         PostQuitMessage (0) ;
         return 0 ;
-    /*case WM_GETMINMAXINFO:
-    {
-        LPMINMAXINFO pInfo = (LPMINMAXINFO)lParam;
-        POINT point;
-        point.x=1200;
-        point.y=720;
-        pInfo->ptMinTrackSize=point;
+    
+    case WM_GETMINMAXINFO:
+        {
+        MINMAXINFO* mmi = (MINMAXINFO*)lParam;
+        mmi->ptMinTrackSize.x = 450;
+        mmi->ptMinTrackSize.y = 250;
+        mmi->ptMaxTrackSize.x = 640;
+        mmi->ptMaxTrackSize.y = 480;
         return 0;
-    }*/
+        }
+    
     case WM_RBUTTONDOWN:
         MessageBox (NULL, TEXT ("You pressed right mouse button"), TEXT ("Notitification"), 1) ;
         return 0;
+    
     case WM_CLOSE:
         MessageBox (NULL, TEXT ("Sure?"), TEXT ("Exit"), 0) ;
         PostQuitMessage (0) ;
